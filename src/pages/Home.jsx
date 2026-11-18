@@ -1,9 +1,95 @@
-// OWNER: feature/routing-landing
-// TODO: landing page describing the store (use useFetch with `${API_URL}/store_info/1`).
-export default function Home() {
+
+import { Link } from "react-router-dom";
+import { API_URL } from "../api";
+import useFetch from "../hooks/useFetch";
+
+export default function Home({ store, loading, error }) {
+  const {
+    data: products,
+    loading: productsLoading,
+    error: productsError,
+  } = useFetch(`${API_URL}/products`);
+
+  if (loading || productsLoading) {
+    return <section className="page">Loading...</section>;
+  }
+
+  if (error || productsError) {
+    return (
+      <section className="page">
+        <p role="alert">Something went wrong while loading the store.</p>
+      </section>
+    );
+  }
+
+  const featuredProducts = Array.isArray(products)
+    ? products.slice(0, 6)
+    : [];
+
   return (
     <section className="page">
-      <h1>Home</h1>
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-content">
+          <p>{store?.name}</p>
+
+          <h1>Elegance in Every Detail.</h1>
+
+          <p>{store?.tagline}</p>
+
+          <p>{store?.description}</p>
+
+          <Link to="/products" className="btn">
+            Browse Products
+          </Link>
+
+          <Link to="/products/new" className="btn">
+            Add Products
+          </Link>
+        </div>
+      </section>
+
+      {/* Shop by Category */}
+      <section className="categories">
+        <h2>Shop by Category</h2>
+
+        <div className="category-grid">
+          <div>Rings</div>
+          <div>Necklaces</div>
+          <div>Earrings</div>
+          <div>Bracelets</div>
+          <div>Watches</div>
+          <div>Cufflinks</div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="featured-products">
+        <h2>Featured Products</h2>
+
+        <div className="product-grid">
+          {featuredProducts.map((product) => (
+            <article className="product-card" key={product.id}>
+              <img
+                src={product.image}
+                alt={product.name}
+              />
+
+              <h3>{product.name}</h3>
+
+              <p>{product.category}</p>
+
+              <p>{product.material}</p>
+
+              <p>{product.price}</p>
+
+              <Link to={`/products/${product.id}`}>
+                View Product
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
     </section>
   );
 }
