@@ -1,0 +1,137 @@
+{
+    "store_info": [
+        {
+            "id": 1,
+            "name": "Merc Jewelry",
+            "tagline": "Jewelry for every occasion",
+            "description": "An independent jewelry house offering rings, necklaces, earrings and bracelets in gold, silver and platinum.",
+            "phone_number": "555-5555",
+            "email": "info@merc.example",
+            "address": "12 Market Street, Nairobi",
+            "hours": "Mon-Sat, 9:00-18:00"
+        }
+    ],
+    "products": [
+    {
+      "id": 1,
+      "name": "Solitaire Ring",
+      "description": "Classic round-cut stone with a slim band",
+      "category": "Rings",
+      "material": "18k Gold",
+      "price": 1250,
+      "stock": 6,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Solitaire+Ring"
+    },
+    {
+      "id": 9,
+      "name": "Classic Leather Watch",
+      "description": "Slim steel case with a brown leather strap",
+      "category": "Watches",
+      "material": "Stainless Steel",
+      "price": 380,
+      "stock": 10,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Classic+Leather+Watch"
+    },
+    {
+      "id": 5,
+      "name": "Pearl Drop Earrings",
+      "description": "Freshwater pearls on delicate hooks",
+      "category": "Earrings",
+      "material": "Sterling Silver",
+      "price": 180,
+      "stock": 14,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Pearl+Drop+Earrings"
+    },
+    {
+      "id": 11,
+      "name": "Onyx Square Cufflinks",
+      "description": "Polished black onyx in a silver setting",
+      "category": "Cufflinks",
+      "material": "Sterling Silver",
+      "price": 120,
+      "stock": 15,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Onyx+Square+Cufflinks"
+    },
+    {
+      "id": 3,
+      "name": "Infinity Necklace",
+      "description": "Looped pendant on a fine chain",
+      "category": "Necklaces",
+      "material": "Rose Gold",
+      "price": 420,
+      "stock": 9,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Infinity+Necklace"
+    },
+    {
+      "id": 7,
+      "name": "Tennis Bracelet",
+      "description": "A continuous line of small stones",
+      "category": "Bracelets",
+      "material": "Platinum",
+      "price": 2100,
+      "stock": 3,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Tennis+Bracelet"
+    },
+    {
+      "id": 6,
+      "name": "Hoop Earrings",
+      "description": "Lightweight everyday hoops",
+      "category": "Earrings",
+      "material": "18k Gold",
+      "price": 340,
+      "stock": 11,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Hoop+Earrings"
+    },
+    {
+      "id": 8,
+      "name": "Charm Bracelet",
+      "description": "Starter bracelet with three charms",
+      "category": "Bracelets",
+      "material": "Rose Gold",
+      "price": 275,
+      "stock": 8,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Charm+Bracelet"
+    },
+    {
+      "id": 2,
+      "name": "Signet Ring",
+      "description": "Flat-top ring ready for engraving",
+      "category": "Rings",
+      "material": "Sterling Silver",
+      "price": 160,
+      "stock": 20,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Signet+Ring"
+    },
+    {
+      "id": 10,
+      "name": "Automatic Chronograph",
+      "description": "Self-winding movement with a sapphire crystal",
+      "category": "Watches",
+      "material": "Titanium",
+      "price": 1450,
+      "stock": 4,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Automatic+Chronograph"
+    },
+    {
+      "id": 4,
+      "name": "Layered Chain Necklace",
+      "description": "Two chains with different lengths",
+      "category": "Necklaces",
+      "material": "Sterling Silver",
+      "price": 95,
+      "stock": 25,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Layered+Chain+Necklace"
+    },
+    {
+      "id": 12,
+      "name": "Gold Knot Cufflinks",
+      "description": "Woven knot design with a polished finish",
+      "category": "Cufflinks",
+      "material": "18k Gold",
+      "price": 290,
+      "stock": 7,
+      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Gold+Knot+Cufflinks"
+    }
+  ]
+    
+}
