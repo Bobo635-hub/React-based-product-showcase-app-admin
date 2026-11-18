@@ -1,22 +1,23 @@
- import { vi, describe, it, expect } from "vitest";
- //import { render, screen } from "@testing-library/react";
- //import { MemoryRouter } from "react-router-dom";
- //import LandingPage from "../pages/Home";
 
-// // Mock the useFetch hook
-//  vi.mock("../hooks/useFetch", () => ({
-//   default: () => ({
-//     data: {
-//       id: 1,
-//       name: "Merc Jewelry",
-//       tagline: "Jewelry for every occasion",
-//       description:
-//         "An independent jewelry house offering rings, necklaces, earrings and bracelets.",
-//     },
-//     loading: false,
-//     error: null,
-//   }),
-// }));
+import { vi, describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import LandingPage from "../pages/Home";
+
+// Mock the useFetch hook
+ vi.mock("../hooks/useFetch", () => ({
+  default: () => ({
+    data: {
+      id: 1,
+      name: "Merc Jewelry",
+      tagline: "Jewelry for every occasion",
+      description:
+        "An independent jewelry house offering rings, necklaces, earrings and bracelets.",
+    },
+    loading: false,
+    error: null,
+  }),
+}));
 
 // describe("LandingPage", () => {
 //   it("renders the landing page correctly", () => {
