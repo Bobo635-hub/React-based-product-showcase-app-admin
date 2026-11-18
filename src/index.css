@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
 :root {
   --bg: #fbf9f6;
   --surface: #ffffff;
@@ -78,4 +80,45 @@ label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
 input, textarea, select {
   width: 100%; min-height: 44px; padding: 10px 14px; border: 1px solid #cdbfaf;
   border-radius: 8px; font: inherit; background: #fff;
+}
+
+/* Home Hero */
+.hero {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  padding: 70px 60px;
+  overflow: hidden;
+  background: #f5eee5;
+  border-radius: 0 0 160px 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+}
+
+.hero-content > p:first-child {
+  color: #9b793e;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+
+.hero-content h1 {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 64px);
+  color: #29231d;
+  margin: 18px 0;
+}
+
+.hero-content p {
+  color: #62594e;
+  line-height: 1.8;
+}
+
+.hero-content .btn {
+  margin: 20px 12px 0 0;
 }
