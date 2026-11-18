@@ -112,20 +112,20 @@ it("displays the Shop by Category section", () => {
   ).toBeInTheDocument();
 });
 
-// it("displays the first six products", () => {
-//   render(
-//     <MemoryRouter>
-//       <LandingPage />
-//     </MemoryRouter>
-//   );
+it("displays the first six products", () => {
+  render(
+    <MemoryRouter>
+      <LandingPage />
+    </MemoryRouter>
+  );
 
-//   expect(screen.getByText("Solitaire Ring")).toBeInTheDocument();
-//   expect(screen.getByText("Classic Leather Watch")).toBeInTheDocument();
-//   expect(screen.getByText("Pearl Drop Earrings")).toBeInTheDocument();
-//   expect(screen.getByText("Onyx Square Cufflinks")).toBeInTheDocument();
-//   expect(screen.getByText("Infinity Necklace")).toBeInTheDocument();
-//   expect(screen.getByText("Tennis Bracelet")).toBeInTheDocument();
-// });
+  expect(screen.getByText("Solitaire Ring")).toBeInTheDocument();
+  expect(screen.getByText("Classic Leather Watch")).toBeInTheDocument();
+  expect(screen.getByText("Pearl Drop Earrings")).toBeInTheDocument();
+  expect(screen.getByText("Onyx Square Cufflinks")).toBeInTheDocument();
+  expect(screen.getByText("Infinity Necklace")).toBeInTheDocument();
+  expect(screen.getByText("Tennis Bracelet")).toBeInTheDocument();
+});
 
 // it("displays product images with alt text", () => {
 //   render(
@@ -142,4 +142,4 @@ it("displays the Shop by Category section", () => {
 //     expect(image).toHaveAttribute("alt");
 //   });
 // });
- });
+// });
