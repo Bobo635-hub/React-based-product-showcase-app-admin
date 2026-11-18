@@ -127,19 +127,19 @@ it("displays the first six products", () => {
   expect(screen.getByText("Tennis Bracelet")).toBeInTheDocument();
 });
 
-// it("displays product images with alt text", () => {
-//   render(
-//     <MemoryRouter>
-//       <LandingPage />
-//     </MemoryRouter>
-//   );
+it("displays product images with alt text", () => {
+  render(
+    <MemoryRouter>
+      <LandingPage />
+    </MemoryRouter>
+  );
 
-//   const images = screen.getAllByRole("img");
+  const images = screen.getAllByRole("img");
 
-//   expect(images.length).toBeGreaterThanOrEqual(6);
+  expect(images.length).toBeGreaterThanOrEqual(6);
 
-//   images.forEach((image) => {
-//     expect(image).toHaveAttribute("alt");
-//   });
-// });
-// });
+  images.forEach((image) => {
+    expect(image).toHaveAttribute("alt");
+  });
+});
+});
