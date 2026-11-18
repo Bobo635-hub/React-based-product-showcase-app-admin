@@ -121,4 +121,43 @@ input, textarea, select {
 
 .hero-content .btn {
   margin: 20px 12px 0 0;
+}   
+
+/* Shop by Category */
+.categories {
+  padding: 70px 0;
+}
+
+.categories h2 {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 500;
+  text-align: center;
+  color: #29231d;
+  margin-bottom: 35px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.category-grid div {
+  min-height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5eee5;
+  border: 1px solid #e8dccb;
+  border-radius: 12px;
+  color: #72572f;
+  font-family: var(--font-display);
+  font-size: 25px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.category-grid div:hover {
+  transform: translateY(-5px);
+  background: #eee2d1;
 }
