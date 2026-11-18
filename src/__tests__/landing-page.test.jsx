@@ -100,17 +100,17 @@ it("displays an Add Products button", () => {
   ).toBeInTheDocument();
 });
 
-// it("displays the Shop by Category section", () => {
-//   render(
-//     <MemoryRouter>
-//       <LandingPage />
-//     </MemoryRouter>
-//   );
+it("displays the Shop by Category section", () => {
+  render(
+    <MemoryRouter>
+      <LandingPage />
+    </MemoryRouter>
+  );
 
-//   expect(
-//     screen.getByRole("heading", { name: /shop by category/i })
-//   ).toBeInTheDocument();
-// });
+  expect(
+    screen.getByRole("heading", { name: /shop by category/i })
+  ).toBeInTheDocument();
+});
 
 // it("displays the first six products", () => {
 //   render(
@@ -142,4 +142,4 @@ it("displays an Add Products button", () => {
 //     expect(image).toHaveAttribute("alt");
 //   });
 // });
-});
+ });
