@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import LandingPage from "../pages/Home";
 
 // Mock the useFetch hook
- vi.mock("../hooks/useFetch", () => ({
+vi.mock("../hooks/useFetch", () => ({
   default: () => ({
     data: {
       id: 1,
@@ -62,43 +62,31 @@ describe("LandingPage", () => {
     ).toBeInTheDocument();
   });
 
-//   it("displays the hero heading", () => {
-//   render(
-//     <MemoryRouter>
-//       <LandingPage />
-//     </MemoryRouter>
-//   );
+  it("displays the hero heading", () => {
+  render(
+    <MemoryRouter>
+      <LandingPage />
+    </MemoryRouter>
+  );
 
-//   expect(
-//     screen.getByRole("heading", {
-//       name: "Elegance in Every Detail.",
-//     })
-//   ).toBeInTheDocument();
-// });
+  expect(
+    screen.getByRole("heading", {
+      name: "Elegance in Every Detail.",
+    })
+  ).toBeInTheDocument();
+});
 
-// it("displays the Browse Products button", () => {
-//   render(
-//     <MemoryRouter>
-//       <LandingPage />
-//     </MemoryRouter>
-//   );
+it("displays the Browse Products button", () => {
+  render(
+    <MemoryRouter>
+      <LandingPage />
+    </MemoryRouter>
+  );
 
-//   expect(
-//     screen.getByRole("link", { name: /browse products/i })
-//   ).toBeInTheDocument();
-// });
-
-// it("displays a Browse Products button", () => {
-//   render(
-//     <MemoryRouter>
-//       <LandingPage />
-//     </MemoryRouter>
-//   );
-
-//   expect(
-//     screen.getByRole("link", { name: /browse products/i })
-//   ).toBeInTheDocument();
-// });
+  expect(
+    screen.getByRole("link", { name: /browse products/i })
+  ).toBeInTheDocument();
+});
 
 // it("displays an Add Products button", () => {
 //   render(
@@ -153,6 +141,5 @@ describe("LandingPage", () => {
 //   images.forEach((image) => {
 //     expect(image).toHaveAttribute("alt");
 //   });
-// });
 // });
 });
