@@ -19,48 +19,48 @@ import LandingPage from "../pages/Home";
   }),
 }));
 
-// describe("LandingPage", () => {
-//   it("renders the landing page correctly", () => {
-//     render(
-//       <MemoryRouter>
-//         <LandingPage />
-//       </MemoryRouter>
-//     );
-//   });
+describe("LandingPage", () => {
+  it("renders the landing page correctly", () => {
+    render(
+      <MemoryRouter>
+        <LandingPage />
+      </MemoryRouter>
+    );
+  });
 
-//   it("displays the store name", () => {
-//     render(
-//       <MemoryRouter>
-//         <LandingPage />
-//       </MemoryRouter>
-//     );
+  it("displays the store name", () => {
+    render(
+      <MemoryRouter>
+        <LandingPage />
+      </MemoryRouter>
+    );
 
-//     expect(screen.getByText("Merc Jewelry")).toBeInTheDocument();
-//   });
+    expect(screen.getByText("Merc Jewelry")).toBeInTheDocument();
+  });
 
-//   it("displays the store tagline", () => {
-//     render(
-//       <MemoryRouter>
-//         <LandingPage />
-//       </MemoryRouter>
-//     );
+  it("displays the store tagline", () => {
+    render(
+      <MemoryRouter>
+        <LandingPage />
+      </MemoryRouter>
+    );
 
-//     expect(
-//       screen.getByText("Jewelry for every occasion")
-//     ).toBeInTheDocument();
-//   });
+    expect(
+      screen.getByText("Jewelry for every occasion")
+    ).toBeInTheDocument();
+  });
 
-//   it("displays the store description", () => {
-//     render(
-//       <MemoryRouter>
-//         <LandingPage />
-//       </MemoryRouter>
-//     );
+  it("displays the store description", () => {
+    render(
+      <MemoryRouter>
+        <LandingPage />
+      </MemoryRouter>
+    );
 
-//     expect(
-//       screen.getByText(/An independent jewelry house offering rings/)
-//     ).toBeInTheDocument();
-//   });
+    expect(
+      screen.getByText(/An independent jewelry house offering rings/)
+    ).toBeInTheDocument();
+  });
 
 //   it("displays the hero heading", () => {
 //   render(
@@ -155,3 +155,4 @@ import LandingPage from "../pages/Home";
 //   });
 // });
 // });
+});
