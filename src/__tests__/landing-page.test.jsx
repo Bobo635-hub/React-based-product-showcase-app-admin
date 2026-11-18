@@ -88,17 +88,17 @@ it("displays the Browse Products button", () => {
   ).toBeInTheDocument();
 });
 
-// it("displays an Add Products button", () => {
-//   render(
-//     <MemoryRouter>
-//       <LandingPage />
-//     </MemoryRouter>
-//   );
+it("displays an Add Products button", () => {
+  render(
+    <MemoryRouter>
+      <LandingPage />
+    </MemoryRouter>
+  );
 
-//   expect(
-//     screen.getByRole("link", { name: /add products/i })
-//   ).toBeInTheDocument();
-// });
+  expect(
+    screen.getByRole("link", { name: /add products/i })
+  ).toBeInTheDocument();
+});
 
 // it("displays the Shop by Category section", () => {
 //   render(
