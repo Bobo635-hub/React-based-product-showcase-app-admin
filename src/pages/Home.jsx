@@ -32,7 +32,7 @@ export default function Home({ store, loading, error }) {
   const featuredProducts = Array.isArray(products)
     ? products.slice(0, 6)
     : [];
-
+//list of categories for users to browse products by category.
   const categories = [
     "Rings",
     "Necklaces",
