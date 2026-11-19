@@ -28,10 +28,12 @@ export default function Home({ store, loading, error }) {
       </section>
     );
   }
+  
 // Selects the first six products to display as featured products.
   const featuredProducts = Array.isArray(products)
     ? products.slice(0, 6)
     : [];
+
 //list of categories for users to browse products by category.
   const categories = [
     "Rings",
@@ -41,6 +43,7 @@ export default function Home({ store, loading, error }) {
     "Watches",
     "Cufflinks",
   ];
+
 //Filters products by the selected category 
 
   const displayProducts = selectedCategory
@@ -53,6 +56,7 @@ export default function Home({ store, loading, error }) {
   return (
     <section className="page">
       {/* Hero Section */}
+
       <section className="hero">
         <div className="hero-content">
           <p>{store?.name}</p>
@@ -74,6 +78,7 @@ export default function Home({ store, loading, error }) {
       </section>
 
       {/* Shop by Category  allows users to browse products by category */}
+
       <section className="categories">
         <h2>Shop by Category</h2>
         <button
@@ -97,7 +102,8 @@ export default function Home({ store, loading, error }) {
         </div>
       </section>
 
-      {/* Featured Products */}
+{/* Featured Products displays products and links to their details. */} 
+
       <section className="featured-products">
         <h2>Featured Products</h2>
 
