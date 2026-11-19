@@ -14,8 +14,10 @@
   --font-display: "Cormorant Garamond", Georgia, serif;
 }
 
+/* Applies consistent sizing to all elements */
 * { box-sizing: border-box; }
 
+/*Sets default styles for the body and text elements */
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -24,6 +26,7 @@ body {
   line-height: 1.6;
 }
 
+/* Sets default styles for headings and links */
 h1, h2 { font-family: var(--font-display); line-height: 1.2; }
 a { color: var(--gold); }
 
@@ -123,7 +126,7 @@ input, textarea, select {
   margin: 20px 12px 0 0;
 }   
 
-/* Shop by Category */
+/* Shop by Category creates a grid of category buttons for users to browse products by category */
 .categories {
   padding: 70px 0;
 }
@@ -165,7 +168,8 @@ input, textarea, select {
   transform: translateY(-5px);
   background: #eee2d1;
 }
-/* Show All Button */
+
+/* Show All Button it displays a button that allows users to view all products in the store */
 .show-all-btn {
   display: block;
   margin: 0 auto 30px;
@@ -192,7 +196,7 @@ input, textarea, select {
 }
 
 
-/* Featured Products */
+/* Featured Products styles the section that showcases selected products on the homepage */
 .featured-products {
   padding: 60px 0 80px;
 }
@@ -206,12 +210,14 @@ input, textarea, select {
   margin-bottom: 35px;
 }
 
+/* Product Grid styles the grid layout for displaying products on the homepage */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 28px;
 }
 
+/* Product Card styles the individual product cards within the product grid */
 .product-card {
   background: #fff;
   border: 1px solid #e8dccb;
