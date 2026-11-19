@@ -41,7 +41,8 @@ export default function Home({ store, loading, error }) {
     "Watches",
     "Cufflinks",
   ];
-//Filters products by the selected category or displays featured products.
+//Filters products by the selected category 
+
   const displayProducts = selectedCategory
   ? (Array.isArray(products) ? products : []).filter(
       (product) =>
@@ -72,7 +73,7 @@ export default function Home({ store, loading, error }) {
         </div>
       </section>
 
-      {/* Shop by Category */}
+      {/* Shop by Category  allows users to browse products by category */}
       <section className="categories">
         <h2>Shop by Category</h2>
         <button
