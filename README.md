@@ -42,7 +42,7 @@ An administrator portal for a jewelry e-commerce site, built as a React single-p
    |---|---|
    | React app | http://localhost:5173 |
    | API  | http://localhost:3001 |
-
+   
 
    If the page loads with the Header, Footer, and product placeholders, you're set up correctly.
 
@@ -160,12 +160,75 @@ git checkout -b feature/your-branch
 4. After the merge, delete the feature branch.
 5. Everyone runs `git pull origin develop` to get the new code.
 
-### Rules
+## Team rules
 
-- Nobody pushes directly to `main` or `develop`.
+### Git and branches
+
+- Nobody pushes directly to `main` or `develop`. Everything goes through a pull request.
+- Always create your feature branch from `develop`, never from `main`.
+- Name branches `feature/short-description`, and keep one feature per branch.
+- Pull `develop` into your branch at least once a day to avoid large merge conflicts.
+- Use clear commit messages with a prefix: `feat:`, `fix:`, `test:`, `docs:`, or `style:`.
+- Never use `git push --force` on a shared branch.
+- Delete your feature branch after it has been merged. Keep `develop`.
+
+### Pull requests and reviews
+
+- Open pull requests with **base: `develop`**. Double-check this before you click Create.
+- Every pull request includes tests for its feature and passes `npm test`.
+- Every pull request needs one approval from a teammate before it is merged.
+- Reviewers pull the branch, run `npm start` and `npm test`, and click through the feature, not just read the code.
+- Open a draft pull request early so teammates can see progress.
+- Only `develop` merges into `main`, and only for the final release. The release pull request uses a regular merge (not squash) so the branch history stays visible.
+
+### File ownership
+
 - Edit only your own page and component files.
-- Ask the scaffold owner before changing `App.jsx`, `index.css`, `Header`, `Footer`, or `server/index.js`.
-- Use `useFetch` and `API_URL` for requests so the whole team stays consistent.
+- Ask the scaffold owner before changing `App.jsx`, `index.css`, `Header`, `Footer`, or `server/index.js`. These are shared and cause conflicts when several people edit them.
+- Reuse the shared pieces: `useFetch` for loading data, `API_URL` for the server address, and the shared CSS classes (`.btn`, `.card`, `.grid`) and colour tokens in `index.css`.
+- Keep to the product shape `{ id, name, description, category, material, price, stock, image }`. If you need a new field, agree on it with the team first, because it affects the server, the form, and every test.
+
+### Data
+
+- `server/db.json` is shared test data. Run `npm run reset` before you demo or test, to start from the clean seed data.
+- Do not commit changes to `server/db.json` that came from your own testing. Only commit it when the team has agreed to change the seed data, and update `server/db.seed.json` at the same time.
+
+### Code quality
+
+- Use functional components and hooks.
+- Give every form input a visible `<label>`, and every image meaningful `alt` text.
+- Handle loading, error, and empty states on every page that fetches data.
+- Remove `console.log` calls and unused code before you open a pull request.
+
+### Testing
+
+- Every feature has its own test file in `src/__tests__/`.
+- Mock `fetch` in tests so they never depend on the real server.
+- Do not merge a pull request with failing tests.
+
+### Communication
+
+- Hold a 10-minute check-in every day. Each person says what works, what is next, and what is blocking them.
+- If you are blocked for more than an hour, say so in the group chat right away so someone can help.
+- Write down open questions and decisions in the group chat or on the Trello board, so nothing is lost.
+- Update your Trello card as you work: move it to the next list when it is done.
+
+### Schedule
+
+- **Day 1 (Wed Nov 18):** setup and core build. Every feature branch exists and has a draft pull request open.
+- **Day 2 (Thu Nov 19):** finish features, write tests, and merge into `develop`.
+- **Day 3 (Fri Nov 20):** integration, bug fixes only, a freeze at midday, then the release from `develop` into `main` and submission.
+- After the Day 3 freeze, only bug fixes approved by the integration lead are merged.
+
+### Definition of done
+
+A feature is done when it:
+
+1. Works with real data from the server.
+2. Handles loading, error, and empty states.
+3. Looks right on desktop and on a phone-width screen.
+4. Has passing tests.
+5. Has been reviewed, merged into `develop`, and its branch deleted.
 
 ## Testing
 
