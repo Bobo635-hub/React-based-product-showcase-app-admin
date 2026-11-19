@@ -35,3 +35,8 @@ test("Home link goes to the home page", () => {
   expect(homeLink).toHaveAttribute("href", "/");
 });
 
+test("Products link goes to the product list", () => {
+  renderHeader();
+  const productsLink = screen.getByRole("link", { name: "Products" });
+  expect(productsLink).toHaveAttribute("href", "/products");
+});
