@@ -41,7 +41,7 @@ export default function Home({ store, loading, error }) {
     "Watches",
     "Cufflinks",
   ];
-
+//Filters products by the selected category or displays featured products.
   const displayProducts = selectedCategory
   ? (Array.isArray(products) ? products : []).filter(
       (product) =>
