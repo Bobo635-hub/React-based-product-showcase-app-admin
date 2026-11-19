@@ -1,10 +1,11 @@
-
+// Home component displays the store landing page and manages category selection.
 import { Link } from "react-router-dom";
-import { useState} from "react";
+import { useState } from "react";
 import { API_URL } from "../api";
 import useFetch from "../hooks/useFetch";
 
 export default function Home({ store, loading, error }) {
+//Trace the category selected by the user.
   const [selectedCategory, setSelectedCategory] = useState(null);
     const {
     data: products,
