@@ -3,30 +3,35 @@ import { MemoryRouter } from "react-router-dom";
 import { test, expect } from "vitest";
 import Header from "../components/Header";
 
-// Test 1: the Header shows the store name we give it
-test("shows the store name", () => {
-  // 1. Draw the Header on a fake page
+// Helper: draws the Header on a fake page.
+// You can pass a different store, or leave it out to use the default.
+function renderHeader(store = { name: "Merc Jewelry" }) {
   render(
     <MemoryRouter>
-      <Header store={{ name: "Merc Jewelry" }} />
+      <Header store={store} />
     </MemoryRouter>
   );
+}
 
-  // 2. Look for the text on the page
-  const storeName = screen.getByText("Merc Jewelry");
+// ----- Store name tests -----
 
-  // 3. Check that it is there
-  expect(storeName).toBeInTheDocument();
+test("shows the store name", () => {
+  renderHeader();
+  expect(screen.getByText("Merc Jewelry")).toBeInTheDocument();
 });
 
-// Test 2: a different name shows up too
 test("shows a different store name", () => {
-  render(
-    <MemoryRouter>
-      <Header store={{ name: "Gem and Gold Co." }} />
-    </MemoryRouter>
-  );
-
+  renderHeader({ name: "Gem and Gold Co." });
   expect(screen.getByText("Gem and Gold Co.")).toBeInTheDocument();
+});
+
+
+
+// ----- Navbar link tests -----
+
+test("Home link goes to the home page", () => {
+  renderHeader();
+  const homeLink = screen.getByRole("link", { name: "Home" });
+  expect(homeLink).toHaveAttribute("href", "/");
 });
 
