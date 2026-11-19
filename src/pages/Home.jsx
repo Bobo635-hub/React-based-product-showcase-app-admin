@@ -20,6 +20,7 @@ export default function Home({ store, loading, error }) {
     return <section className="page">Loading...</section>;
   }
 
+  // Error condition displays an error message if there was an issue loading the store or products.
   if (error || productsError) {
     return (
       <section className="page">
