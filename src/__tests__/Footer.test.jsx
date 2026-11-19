@@ -29,3 +29,9 @@ test("phone link uses tel:", () => {
   expect(phoneLink).toHaveAttribute("href", "tel:123-456-789");
 });
 
+// Test 2: the email is a link that opens an email
+test("email link uses mailto:", () => {
+  renderFooter();
+  const emailLink = screen.getByRole("link", { name: "info@merc.example" });
+  expect(emailLink).toHaveAttribute("href", "mailto:info@merc.example");
+});
