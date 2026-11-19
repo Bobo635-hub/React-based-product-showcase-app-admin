@@ -21,7 +21,7 @@
       "material": "18k Gold",
       "price": 1250,
       "stock": 6,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Solitaire+Ring"
+      "image": "/images/solitaire-ring.jpeg"
     },
     {
       "id": 9,
@@ -31,7 +31,7 @@
       "material": "Stainless Steel",
       "price": 380,
       "stock": 10,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Classic+Leather+Watch"
+      "image": "/images/classic-leather-watch.webp"
     },
     {
       "id": 5,
@@ -41,7 +41,7 @@
       "material": "Sterling Silver",
       "price": 180,
       "stock": 14,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Pearl+Drop+Earrings"
+      "image": "/images/pearl-drop-earrings.webp"
     },
     {
       "id": 11,
@@ -51,7 +51,7 @@
       "material": "Sterling Silver",
       "price": 120,
       "stock": 15,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Onyx+Square+Cufflinks"
+      "image": "/images/onyx-square-cufflinks.jpeg"
     },
     {
       "id": 3,
@@ -61,7 +61,7 @@
       "material": "Rose Gold",
       "price": 420,
       "stock": 9,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Infinity+Necklace"
+      "image": "/images/infinity-necklace.jpeg"
     },
     {
       "id": 7,
@@ -71,7 +71,7 @@
       "material": "Platinum",
       "price": 2100,
       "stock": 3,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Tennis+Bracelet"
+      "image": "/images/tennis-bracelet.jpeg"
     },
     {
       "id": 6,
@@ -81,7 +81,7 @@
       "material": "18k Gold",
       "price": 340,
       "stock": 11,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Hoop+Earrings"
+      "image": "/images/hoop-earrings.jpeg"
     },
     {
       "id": 8,
@@ -91,7 +91,7 @@
       "material": "Rose Gold",
       "price": 275,
       "stock": 8,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Charm+Bracelet"
+      "image": "/images/charm-bracelet.jpeg"
     },
     {
       "id": 2,
@@ -101,7 +101,7 @@
       "material": "Sterling Silver",
       "price": 160,
       "stock": 20,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Signet+Ring"
+      "image": "/images/signet-ring.jpeg"
     },
     {
       "id": 10,
@@ -111,7 +111,7 @@
       "material": "Titanium",
       "price": 1450,
       "stock": 4,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Automatic+Chronograph"
+      "image": "/images/automatic-chronograph.jpeg"
     },
     {
       "id": 4,
@@ -121,7 +121,7 @@
       "material": "Sterling Silver",
       "price": 95,
       "stock": 25,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Layered+Chain+Necklace"
+      "image": "/images/layered-chain-necklace.jpeg"
     },
     {
       "id": 12,
@@ -131,7 +131,7 @@
       "material": "18k Gold",
       "price": 290,
       "stock": 7,
-      "image": "https://placehold.co/600x600/F3EAD6/5A4410?text=Gold+Knot+Cufflinks"
+      "image": "/images/gold-knot-cufflinks.jpeg"
     }
   ]
 }
