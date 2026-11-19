@@ -4,7 +4,7 @@ import { test, expect } from "vitest";
 import Header from "../components/Header";
 
 // Helper: draws the Header on a fake page.
-// You can pass a different store, or leave it out to use the default.
+//  Pass a different store, or leave it out to use the default.
 function renderHeader(store = { name: "Merc Jewelry" }) {
   render(
     <MemoryRouter>
