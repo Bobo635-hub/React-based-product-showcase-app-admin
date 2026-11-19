@@ -28,7 +28,7 @@ export default function Home({ store, loading, error }) {
       </section>
     );
   }
-
+// Selects the first six products to display as featured products.
   const featuredProducts = Array.isArray(products)
     ? products.slice(0, 6)
     : [];
