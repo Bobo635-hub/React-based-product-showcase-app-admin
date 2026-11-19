@@ -19,5 +19,14 @@ test("shows the store name", () => {
   expect(storeName).toBeInTheDocument();
 });
 
+// Test 2: a different name shows up too
+test("shows a different store name", () => {
+  render(
+    <MemoryRouter>
+      <Header store={{ name: "Gem and Gold Co." }} />
+    </MemoryRouter>
+  );
 
+  expect(screen.getByText("Gem and Gold Co.")).toBeInTheDocument();
+});
 
