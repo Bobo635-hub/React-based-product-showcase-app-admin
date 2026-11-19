@@ -40,3 +40,9 @@ test("Products link goes to the product list", () => {
   const productsLink = screen.getByRole("link", { name: "Products" });
   expect(productsLink).toHaveAttribute("href", "/products");
 });
+
+test("Add product link goes to the add product form", () => {
+  renderHeader();
+  const addLink = screen.getByRole("link", { name: "Add product" });
+  expect(addLink).toHaveAttribute("href", "/products/new");
+});
