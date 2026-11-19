@@ -35,3 +35,9 @@ test("email link uses mailto:", () => {
   const emailLink = screen.getByRole("link", { name: "info@merc.example" });
   expect(emailLink).toHaveAttribute("href", "mailto:info@merc.example");
 });
+
+// Test 3: the address is shown as plain text
+test("shows the store address", () => {
+  renderFooter();
+  expect(screen.getByText("12 Market Avenue, Nairobi")).toBeInTheDocument();
+});
