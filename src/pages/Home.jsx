@@ -15,6 +15,7 @@ export default function Home({ store, loading, error }) {
     error: productsError,
   } = useFetch(`${API_URL}/products`);
 
+  //loading condition displays a loading message while store and product data are being fetched.
   if (loading || productsLoading) {
     return <section className="page">Loading...</section>;
   }
