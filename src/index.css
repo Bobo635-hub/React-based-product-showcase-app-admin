@@ -143,24 +143,29 @@ input, textarea, select {
   gap: 24px;
 }
 
-.category-grid div {
+.category-grid button {
   min-height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   background: #f5eee5;
   border: 1px solid #e8dccb;
   border-radius: 12px;
   color: #72572f;
   font-family: var(--font-display);
   font-size: 25px;
+  cursor: pointer;
   transition: transform 0.3s ease, background 0.3s ease;
+  padding: 20px;
+  appearance: none;
 }
 
-.category-grid div:hover {
+.category-grid button:hover {
   transform: translateY(-5px);
   background: #eee2d1;
 }
+
 
 /* Featured Products */
 .featured-products {

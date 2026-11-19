@@ -1,10 +1,12 @@
 
 import { Link } from "react-router-dom";
+import { useState} from "react";
 import { API_URL } from "../api";
 import useFetch from "../hooks/useFetch";
 
 export default function Home({ store, loading, error }) {
-  const {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+    const {
     data: products,
     loading: productsLoading,
     error: productsError,
@@ -25,6 +27,22 @@ export default function Home({ store, loading, error }) {
   const featuredProducts = Array.isArray(products)
     ? products.slice(0, 6)
     : [];
+
+  const categories = [
+    "Rings",
+    "Necklaces",
+    "Earrings",
+    "Bracelets",
+    "Watches",
+    "Cufflinks",
+  ];
+
+  const displayProducts = selectedCategory
+  ? (Array.isArray(products) ? products : []).filter(
+      (product) =>
+        product.category?.toLowerCase() === selectedCategory.toLowerCase()
+    )
+  : featuredProducts;
 
   return (
     <section className="page">
@@ -52,14 +70,23 @@ export default function Home({ store, loading, error }) {
       {/* Shop by Category */}
       <section className="categories">
         <h2>Shop by Category</h2>
+        <button
+            type="button"
+            onClick={() => setSelectedCategory(null)}
+          >
+            All
+          </button>
 
         <div className="category-grid">
-          <div>Rings</div>
-          <div>Necklaces</div>
-          <div>Earrings</div>
-          <div>Bracelets</div>
-          <div>Watches</div>
-          <div>Cufflinks</div>
+          {categories.map((category) => (
+            <button
+              type="button"
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
         </div>
       </section>
 
@@ -68,7 +95,7 @@ export default function Home({ store, loading, error }) {
         <h2>Featured Products</h2>
 
         <div className="product-grid">
-          {featuredProducts.map((product) => (
+          {displayProducts.map((product) => (
             <article className="product-card" key={product.id}>
               <img
                 src={product.image}
