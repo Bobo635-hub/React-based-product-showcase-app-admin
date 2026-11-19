@@ -72,9 +72,10 @@ export default function Home({ store, loading, error }) {
         <h2>Shop by Category</h2>
         <button
             type="button"
+            className="show-all-btn"
             onClick={() => setSelectedCategory(null)}
           >
-            All
+            Show All
           </button>
 
         <div className="category-grid">
