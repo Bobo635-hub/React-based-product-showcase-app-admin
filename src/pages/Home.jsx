@@ -7,6 +7,8 @@ import useFetch from "../hooks/useFetch";
 export default function Home({ store, loading, error }) {
 //Trace the category selected by the user.
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // Fetches products from the API and tracks loading and error states.
     const {
     data: products,
     loading: productsLoading,
