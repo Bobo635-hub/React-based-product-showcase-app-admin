@@ -92,3 +92,13 @@ test("saving sends a PATCH with the new price", async () => {
   expect(JSON.parse(patchCall[1].body).price).toBe(1300);
 });
 
+// Test 5: cancelling the confirmation deletes nothing
+test("cancelling the delete confirmation does not delete", async () => {
+  vi.spyOn(window, "confirm").mockReturnValue(false);
+  renderPage();
+  await userEvent.click(await screen.findByRole("button", { name: "Delete product" }));
+
+  const deleteCalls = fetch.mock.calls.filter(([, options]) => options?.method === "DELETE");
+  expect(deleteCalls).toHaveLength(0);
+});
+
