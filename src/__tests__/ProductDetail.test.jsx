@@ -102,3 +102,13 @@ test("cancelling the delete confirmation does not delete", async () => {
   expect(deleteCalls).toHaveLength(0);
 });
 
+// Test 6: confirming sends DELETE and goes back to the list
+test("confirming the delete sends DELETE and goes back to the list", async () => {
+  vi.spyOn(window, "confirm").mockReturnValue(true);
+  renderPage();
+  await userEvent.click(await screen.findByRole("button", { name: "Delete product" }));
+
+  expect(await screen.findByText("Product list page")).toBeInTheDocument();
+  const deleteCall = fetch.mock.calls.find(([, options]) => options?.method === "DELETE");
+  expect(deleteCall[0]).toContain("/products/1");
+});
