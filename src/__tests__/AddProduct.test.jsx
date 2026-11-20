@@ -11,9 +11,10 @@ beforeEach(() => {
   );
 });
 
-// Helper function for filling form fields
-function fill(label, value) {
-  fireEvent.change(screen.getByLabelText(label), {
-    target: { value },
+// Test 2: shows every field
+test('renders all form fields', () => {
+  render(<AddProduct />);
+  ['Name', 'Description', 'Category', 'Material', 'Price', 'Stock', 'Image'].forEach((label) => {
+    expect(screen.getByLabelText(label)).toBeInTheDocument();
   });
-}
+});
