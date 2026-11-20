@@ -299,3 +299,8 @@ input, textarea, select {
 }
 .row { display: flex; gap: 12px; flex-wrap: wrap; }
 
+/* Delete button and messages */
+.btn--danger { background: #fff; color: #a32424; border: 1px solid #d9a5a5; }
+.notice { margin: 0 0 18px; padding: 10px 14px 10px 32px; border-radius: 8px; }
+.notice--error { background: #fbe9e7; color: #8a2b1c; }
+.notice--success { background: #eef3ea; color: #2f5a22; padding-left: 14px; }
