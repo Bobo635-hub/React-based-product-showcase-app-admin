@@ -1,8 +1,9 @@
+
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../api';
 import './AddProduct.css';
 
-// Available product categories
 const CATEGORIES = [
   'Rings',
   'Necklaces',
@@ -13,7 +14,8 @@ const CATEGORIES = [
 ];
 
 function AddProduct({ onAdd }) {
-  // Manage each product input value using React state
+  const navigate = useNavigate();
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -22,51 +24,78 @@ function AddProduct({ onAdd }) {
   const [stock, setStock] = useState('');
   const [image, setImage] = useState('');
 
-  // Handle form submission
-  function handleSubmit(e) {
-    e.preventDefault();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-    // Prepare the new product data
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError('');
+
+    // Validate the form
+    if (
+      !name.trim() ||
+      !description.trim() ||
+      !category ||
+      !material.trim() ||
+      price === '' ||
+      stock === '' ||
+      !image.trim()
+    ) {
+      setError('Please fill in all product fields.');
+      return;
+    }
+
+    if (
+      !Number.isFinite(Number(price)) ||
+      Number(price) < 0 ||
+      !Number.isInteger(Number(stock)) ||
+      Number(stock) < 0
+    ) {
+      setError('Enter a valid price and a non-negative whole number for stock.');
+      return;
+    }
+
     const newProduct = {
-      name,
-      description,
+      name: name.trim(),
+      description: description.trim(),
       category,
-      material,
+      material: material.trim(),
       price: Number(price),
       stock: Number(stock),
-      image,
+      image: image.trim(),
     };
 
-    // Send product data to the backend
-    fetch(`${API_URL}/products`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newProduct),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Failed to add product');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        // Notify the parent component
-        onAdd?.(data);
+    setLoading(true);
 
-        // Clear all form fields
-        setName('');
-        setDescription('');
-        setCategory('');
-        setMaterial('');
-        setPrice('');
-        setStock('');
-        setImage('');
-      })
-      .catch((error) => {
-        console.error('Error adding product:', error);
+    try {
+      const response = await fetch(`${API_URL}/products`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProduct),
       });
+
+      if (!response.ok) {
+        throw new Error('Failed to add product. Please try again.');
+      }
+
+      const savedProduct = await response.json();
+
+      // Notify the parent if a callback is provided
+      if (typeof onAdd === 'function') {
+        onAdd(savedProduct);
+      }
+
+      // Return to the products page after saving
+      navigate('/products');
+    } catch (err) {
+      setError(
+        err.message || 'Unable to connect to the server. Please try again.'
+      );
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -77,12 +106,21 @@ function AddProduct({ onAdd }) {
         Fill in the details below to add a new product to the store.
       </p>
 
+      {error && (
+        <p className="form-error" role="alert">
+          {error}
+        </p>
+      )}
+
       <div className="field">
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Product Name</label>
         <input
           id="name"
+          type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="Enter product name"
+          required
         />
       </div>
 
@@ -92,22 +130,25 @@ function AddProduct({ onAdd }) {
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          placeholder="Describe the product"
+          required
         />
       </div>
 
       <div className="row">
         <div className="field">
           <label htmlFor="category">Category</label>
-
           <select
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            required
           >
             <option value="">Select a category</option>
-            {CATEGORIES.map((c) => (
-              <option key={c} value={c}>
-                {c}
+
+            {CATEGORIES.map((item) => (
+              <option key={item} value={item}>
+                {item}
               </option>
             ))}
           </select>
@@ -117,8 +158,11 @@ function AddProduct({ onAdd }) {
           <label htmlFor="material">Material</label>
           <input
             id="material"
+            type="text"
             value={material}
             onChange={(e) => setMaterial(e.target.value)}
+            placeholder="e.g. Gold, Silver"
+            required
           />
         </div>
       </div>
@@ -129,8 +173,12 @@ function AddProduct({ onAdd }) {
           <input
             id="price"
             type="number"
+            min="0"
+            step="0.01"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            placeholder="Enter price"
+            required
           />
         </div>
 
@@ -139,30 +187,58 @@ function AddProduct({ onAdd }) {
           <input
             id="stock"
             type="number"
+            min="0"
+            step="1"
             value={stock}
             onChange={(e) => setStock(e.target.value)}
+            placeholder="Available quantity"
+            required
           />
         </div>
       </div>
 
       <div className="field">
-        <label htmlFor="image">Image</label>
+        <label htmlFor="image">Product Image URL</label>
         <input
           id="image"
+          type="url"
           value={image}
           onChange={(e) => setImage(e.target.value)}
+          placeholder="https://example.com/image.jpg"
+          required
         />
       </div>
 
+      {image.trim() && (
+        <div className="image-preview">
+          <p>Image Preview</p>
+          <img
+            src={image}
+            alt="Product preview"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+            onLoad={(e) => {
+              e.currentTarget.style.display = 'block';
+            }}
+          />
+        </div>
+      )}
+
       <div className="actions">
-        <button type="submit" className="btn btn-primary">
-          Add Product
+        <button
+          type="submit"
+          className="btn btn-primary"
+          disabled={loading}
+        >
+          {loading ? 'Adding Product...' : 'Add Product'}
         </button>
 
         <button
           type="button"
           className="btn btn-secondary"
-          onClick={() => window.history.back()}
+          disabled={loading}
+          onClick={() => navigate('/products')}
         >
           Cancel
         </button>
@@ -172,3 +248,4 @@ function AddProduct({ onAdd }) {
 }
 
 export default AddProduct;
+
