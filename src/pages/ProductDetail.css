@@ -1,89 +1,79 @@
-/* Page wrapper */
+/* Add page wrapper: centered, with space around the content */
 .detail-page {
-  max-width: 1100px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 32px 24px;
 }
 
-/* Breadcrumb: Products / Product name */
+/* Add breadcrumb above the two columns */
 .breadcrumb {
   margin-bottom: 20px;
-  color: #6b6560;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  color: #444;
 }
 .breadcrumb a {
-  color: #333;
-  text-decoration: underline;
+  color: #7a5410;
 }
 
-/* Two columns: image on the left, form on the right */
-.detail-page .detail {
+/* Add two equal columns: image card on the left, form card on the right */
+.detail {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  gap: 24px;
   align-items: start;
 }
 
-/* Image card */
-.detail-page .image-card {
-  padding: 24px;
-  border: 1px solid #e3e0da;
-  border-radius: 12px;
-  background: #f9f8f6;
+/* Add full-width cards inside the columns (overrides the 560px limit) */
+.detail .card,
+.detail .form-card {
+  max-width: none;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.detail-page .image-box {
+/* Add image card padding so the picture sits inside the card */
+.image-card {
+  padding: 16px;
+}
+
+/* Add square image box with a placeholder look */
+.image-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 10px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #e8d9b5, #d9c493);
+  background: linear-gradient(135deg, #efe3c8, #d9c18f);
   font-family: "Cormorant Garamond", serif;
   font-size: 1.6rem;
-  color: #5a4a1a;
+  color: #5b4510;
+  overflow: hidden;
 }
 
-.detail-page .image-box img {
+/* Add image that fills the box */
+.image-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Form card on the right (reuses .form-card from AddProduct.css) */
-.detail-page .form-card {
-  max-width: none;
+/* Add form heading size to match the design */
+.detail .form-card h2 {
+  font-size: 1.8rem;
   margin: 0;
 }
 
-.detail-page .form-card h2 {
-  font-size: 2rem;
+/* Add delete button with a red outline */
+.form-card .btn.btn-secondary.btn-danger {
+  color: #a12626;
+  border: 1px solid #d9a0a0;
+  background: #fff;
 }
 
-/* Keep labels and inputs evenly spaced, like the design */
-.detail-page .form-card label,
-.detail-page .form-card .field,
-.detail-page .form-card input,
-.detail-page .form-card select,
-.detail-page .form-card textarea {
-  margin: 0;
-}
-
-/* Align rows at the top so side-by-side fields line up */
-.detail-page .form-card .row {
-  align-items: flex-start;
-}
-
-/* Delete button text in red */
-.form-card .btn-danger {
-  color: #a33;
-}
-
-/* Stack the columns on small screens */
+/* Add single column on narrow screens (phones) */
 @media (max-width: 800px) {
-  .detail-page .detail {
+  .detail {
     grid-template-columns: 1fr;
   }
 }
