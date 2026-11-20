@@ -78,3 +78,17 @@ test("shows an error and does not save when the price is invalid", async () => {
   expect(patchCalls).toHaveLength(0);
 });
 
+// Test 4: saving sends a PATCH with the new price
+test("saving sends a PATCH with the new price", async () => {
+  renderPage();
+  const price = await screen.findByLabelText("Price (USD)");
+  await userEvent.clear(price);
+  await userEvent.type(price, "1300");
+  await userEvent.click(screen.getByRole("button", { name: "Save changes" }));
+
+  expect(await screen.findByRole("status")).toHaveTextContent("Changes saved.");
+  const patchCall = fetch.mock.calls.find(([, options]) => options?.method === "PATCH");
+  expect(patchCall[0]).toContain("/products/1");
+  expect(JSON.parse(patchCall[1].body).price).toBe(1300);
+});
+
