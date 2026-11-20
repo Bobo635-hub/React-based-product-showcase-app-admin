@@ -10,7 +10,7 @@ import './AddProduct.css';
 // Available product categories displayed in the dropdown
 const CATEGORIES = ['Rings', 'Necklaces', 'Earrings', 'Bracelets', 'Watches', 'Cufflinks'];
 
-// Manage product form values using React state
+// Manage the product form input values using React state
 const [name, setName] = useState('');
 const [description, setDescription] = useState('');
 const [category, setCategory] = useState('');
