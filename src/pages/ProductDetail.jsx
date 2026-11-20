@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom"; // CHANGED in commit 8: added useNavigate
 import { API_URL } from "../api";
 import useFetch from "../hooks/useFetch";
 
@@ -20,13 +20,14 @@ function toForm(product) {
 
 export default function ProductDetail() {
   const { id } = useParams();
+  const navigate = useNavigate(); // NEW in commit 8: lets us leave the page after deleting
   const { data, loading, error } = useFetch(`${API_URL}/products/${id}`);
 
   const [product, setProduct] = useState(null); // the saved product
   const [form, setForm] = useState(null); // what is typed in the inputs
   const [imageFailed, setImageFailed] = useState(false);
   const [errors, setErrors] = useState([]); // validation and server error messages
-  const [message, setMessage] = useState(""); // NEW in commit 7: "Changes saved." message
+  const [message, setMessage] = useState(""); // "Changes saved." message
 
   // When the product arrives from the server, fill the page and the form
   useEffect(() => {
@@ -39,11 +40,11 @@ export default function ProductDetail() {
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setMessage(""); // NEW in commit 7: hide the old message while the user types
+    setMessage(""); // hide the old message while the user types
   }
 
   // Runs when the form is submitted: check the values, then save with PATCH
-  async function handleSave(e) { // CHANGED in commit 7: now async
+  async function handleSave(e) {
     e.preventDefault(); // stop the browser from reloading the page
 
     const price = Number(form.price);
@@ -59,10 +60,9 @@ export default function ProductDetail() {
     }
 
     setErrors(problems);
-    setMessage(""); // NEW in commit 7
+    setMessage("");
     if (problems.length > 0) return;
 
-    // NEW in commit 7: send the changes to the server
     try {
       const response = await fetch(`${API_URL}/products/${id}`, {
         method: "PATCH",
@@ -85,6 +85,20 @@ export default function ProductDetail() {
       setForm(toForm(updated));
       setImageFailed(false);
       setMessage("Changes saved.");
+    } catch (err) {
+      setErrors([err.message]);
+    }
+  }
+
+  // NEW in commit 8: delete the product, then go back to the list
+  async function handleDelete() {
+    // Ask first. If the user clicks Cancel, do nothing.
+    if (!window.confirm(`Delete "${product.name}"? This cannot be undone.`)) return;
+
+    try {
+      const response = await fetch(`${API_URL}/products/${id}`, { method: "DELETE" });
+      if (!response.ok) throw new Error("Could not delete the product. Please try again.");
+      navigate("/products"); // go back to the product list
     } catch (err) {
       setErrors([err.message]);
     }
@@ -141,7 +155,6 @@ export default function ProductDetail() {
             </ul>
           )}
 
-          {/* NEW in commit 7: success message */}
           {message && (
             <p role="status" className="notice notice--success">{message}</p>
           )}
@@ -196,6 +209,10 @@ export default function ProductDetail() {
 
           <div className="row">
             <button className="btn" type="submit">Save changes</button>
+            {/* NEW in commit 8: Delete button */}
+            <button className="btn btn--danger" type="button" onClick={handleDelete}>
+              Delete product
+            </button>
           </div>
         </form>
       </div>
