@@ -59,3 +59,9 @@ test("shows the product values in the form", async () => {
   expect(screen.getByLabelText("Stock")).toHaveValue("6");
 });
 
+// Test 2: an unknown id shows the not-found page
+test("shows a not-found message for an unknown id", async () => {
+  renderPage("/products/999");
+  expect(await screen.findByRole("heading", { name: "Product not found" })).toBeInTheDocument();
+});
+
