@@ -25,7 +25,8 @@ export default function ProductDetail() {
   const [product, setProduct] = useState(null); // the saved product
   const [form, setForm] = useState(null); // what is typed in the inputs
   const [imageFailed, setImageFailed] = useState(false);
-  const [errors, setErrors] = useState([]); // validation error messages
+  const [errors, setErrors] = useState([]); // validation and server error messages
+  const [message, setMessage] = useState(""); // NEW in commit 7: "Changes saved." message
 
   // When the product arrives from the server, fill the page and the form
   useEffect(() => {
@@ -38,11 +39,11 @@ export default function ProductDetail() {
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setMessage(""); // NEW in commit 7: hide the old message while the user types
   }
 
-  // Runs when the form is submitted. For now it only checks the values.
-  // Sending them to the server (PATCH) comes in the next commit.
-  function handleSave(e) {
+  // Runs when the form is submitted: check the values, then save with PATCH
+  async function handleSave(e) { // CHANGED in commit 7: now async
     e.preventDefault(); // stop the browser from reloading the page
 
     const price = Number(form.price);
@@ -58,7 +59,35 @@ export default function ProductDetail() {
     }
 
     setErrors(problems);
+    setMessage(""); // NEW in commit 7
     if (problems.length > 0) return;
+
+    // NEW in commit 7: send the changes to the server
+    try {
+      const response = await fetch(`${API_URL}/products/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          description: form.description,
+          category: form.category,
+          material: form.material.trim(),
+          price,
+          stock,
+          image: form.image.trim(),
+        }),
+      });
+
+      if (!response.ok) throw new Error("Could not save the changes. Please try again.");
+
+      const updated = await response.json();
+      setProduct(updated); // updates the heading, breadcrumb and image
+      setForm(toForm(updated));
+      setImageFailed(false);
+      setMessage("Changes saved.");
+    } catch (err) {
+      setErrors([err.message]);
+    }
   }
 
   if (loading) {
@@ -110,6 +139,11 @@ export default function ProductDetail() {
                 <li key={text}>{text}</li>
               ))}
             </ul>
+          )}
+
+          {/* NEW in commit 7: success message */}
+          {message && (
+            <p role="status" className="notice notice--success">{message}</p>
           )}
 
           <div className="field">
