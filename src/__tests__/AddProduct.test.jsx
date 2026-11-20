@@ -25,3 +25,10 @@ test('category dropdown has all categories', () => {
   expect(screen.getByRole('option', { name: 'Watches' })).toBeInTheDocument();
   expect(screen.getByRole('option', { name: 'Cufflinks' })).toBeInTheDocument();
 });
+
+// Test 4: typing updates the input
+test('typing updates the name field', () => {
+  render(<AddProduct />);
+  fill('Name', 'Test Ring');
+  expect(screen.getByLabelText('Name')).toHaveValue('Test Ring');
+});
