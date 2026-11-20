@@ -18,3 +18,10 @@ test('renders all form fields', () => {
     expect(screen.getByLabelText(label)).toBeInTheDocument();
   });
 });
+
+// Test 3: category dropdown includes Watches and Cufflinks from db.json
+test('category dropdown has all categories', () => {
+  render(<AddProduct />);
+  expect(screen.getByRole('option', { name: 'Watches' })).toBeInTheDocument();
+  expect(screen.getByRole('option', { name: 'Cufflinks' })).toBeInTheDocument();
+});
