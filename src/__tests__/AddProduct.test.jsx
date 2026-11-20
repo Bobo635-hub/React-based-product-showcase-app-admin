@@ -32,3 +32,30 @@ test('typing updates the name field', () => {
   fill('Name', 'Test Ring');
   expect(screen.getByLabelText('Name')).toHaveValue('Test Ring');
 });
+// Test 5: submitting sends a POST with numbers for price and stock
+test('submits the new product with POST', async () => {
+  render(<AddProduct />);
+  fill('Name', 'Test Ring');
+  fill('Description', 'A test ring');
+  fill('Category', 'Rings');
+  fill('Material', 'Silver');
+  fill('Price', '500');
+  fill('Stock', '3');
+  fill('Image', '/images/test-ring.png');
+
+  fireEvent.click(screen.getByRole('button', { name: 'Add Product' }));
+
+  await waitFor(() => expect(fetch).toHaveBeenCalledTimes(1));
+  const [url, options] = fetch.mock.calls[0];
+  expect(url).toContain('/products');
+  expect(options.method).toBe('POST');
+  expect(JSON.parse(options.body)).toEqual({
+    name: 'Test Ring',
+    description: 'A test ring',
+    category: 'Rings',
+    material: 'Silver',
+    price: 500,
+    stock: 3,
+    image: '/images/test-ring.png',
+  });
+});
