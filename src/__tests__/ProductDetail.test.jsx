@@ -65,3 +65,16 @@ test("shows a not-found message for an unknown id", async () => {
   expect(await screen.findByRole("heading", { name: "Product not found" })).toBeInTheDocument();
 });
 
+// Test 3: a bad price shows an error and nothing is sent
+test("shows an error and does not save when the price is invalid", async () => {
+  renderPage();
+  const price = await screen.findByLabelText("Price (USD)");
+  await userEvent.clear(price);
+  await userEvent.type(price, "-5");
+  await userEvent.click(screen.getByRole("button", { name: "Save changes" }));
+
+  expect(await screen.findByRole("alert")).toHaveTextContent(/price must be/i);
+  const patchCalls = fetch.mock.calls.filter(([, options]) => options?.method === "PATCH");
+  expect(patchCalls).toHaveLength(0);
+});
+
