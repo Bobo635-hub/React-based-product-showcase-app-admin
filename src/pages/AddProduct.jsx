@@ -10,7 +10,7 @@ import './AddProduct.css';
 // Available product categories displayed in the dropdown
 const CATEGORIES = ['Rings', 'Necklaces', 'Earrings', 'Bracelets', 'Watches', 'Cufflinks'];
 
-// Manage the product form input values using React state
+// Store and Manage each product input value using react state
 const [name, setName] = useState('');
 const [description, setDescription] = useState('');
 const [category, setCategory] = useState('');
@@ -59,6 +59,7 @@ const [image, setImage] = useState('');
         setStock('');
         setImage('');
       });
+  }
       return (
     // Display the product form inside a styled card
     <form className="card form-card" onSubmit={handleSubmit}>
