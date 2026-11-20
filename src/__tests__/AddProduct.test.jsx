@@ -59,3 +59,18 @@ test('submits the new product with POST', async () => {
     image: '/images/test-ring.png',
   });
 });
+// Test 6: calls onAdd with the saved product and clears the form
+test('calls onAdd and clears the form after submit', async () => {
+  const onAdd = vi.fn();
+  render(<AddProduct onAdd={onAdd} />);
+
+  fill('Name', 'Test Ring');
+
+  fireEvent.click(screen.getByRole('button', { name: 'Add Product' }));
+
+  await waitFor(() =>
+    expect(onAdd).toHaveBeenCalledWith({ id: 13, name: 'Test Ring' })
+  );
+
+  expect(screen.getByLabelText('Name')).toHaveValue('');
+});
