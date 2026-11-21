@@ -34,4 +34,19 @@ describe('useFetch Hook', () => {
 
         vi.unstubAllGlobals();
     });
+
+    // Test 3: Handling fetch errors
+    it(`returns an error when fetch fails`, async () => {
+        vi.stubGlobal(`fetch`, vi.fn(() =>
+            Promise.reject(new Error('Fetch failed'))
+        ));
+
+        const { result } = renderHook(() => useFetch(`/products`));
+
+        await waitFor(() => expect(result.current.loading).toBe(false));
+        expect(result.current.data).toBe(null);
+        expect(result.current.error).toBe(new Error('Fetch failed'));
+
+        vi.unstubAllGlobals();
+    });
 });
