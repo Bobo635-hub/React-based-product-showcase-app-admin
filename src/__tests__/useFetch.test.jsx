@@ -15,4 +15,23 @@ describe('useFetch Hook', () => {
         vi.unstubAllGlobals();
     
     });
+
+    // Test 2: Successful data fetching
+    it(`fetches data successfully`, async () => {
+        const mockData = [{ id: 1, name: 'Product 1' }];
+        vi.stubGlobal(`fetch`, vi.fn(() =>
+            Promise.resolve({
+                ok: true,
+                json: () => Promise.resolve(mockData),
+            })
+        ));
+
+        const { result } = renderHook(() => useFetch(`/products`));
+
+        await waitFor(() => expect(result.current.loading).toBe(false));
+        expect(result.current.data).toEqual(mockData);
+        expect(result.current.error).toBe(null);
+
+        vi.unstubAllGlobals();
+    });
 });
