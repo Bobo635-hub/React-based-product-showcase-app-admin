@@ -236,4 +236,15 @@ describe("ProductList Component", () => {
     expect(screen.getByText("Pearl Drop Earrings")).toBeTruthy();
     expect(screen.getByText("Tennis Bracelet")).toBeTruthy();
   });
+
+  // Test L: One card per product
+  it("renders one ProductCard for each product available product", () => {
+    const { container } = renderProductList();
+
+    const productCards = container.querySelectorAll(
+      ".product-card"
+    );
+
+    expect(productCards.length).toBe(mockProducts.length);
+  }); 
 });
