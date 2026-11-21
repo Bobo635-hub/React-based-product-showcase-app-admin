@@ -45,7 +45,7 @@ describe('useFetch Hook', () => {
 
         await waitFor(() => expect(result.current.loading).toBe(false));
         expect(result.current.data).toBe(null);
-        expect(result.current.error).toBe(new Error('Fetch failed'));
+        expect(result.current.error).toBe('Fetch failed');
 
         vi.unstubAllGlobals();
     });
